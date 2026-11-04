@@ -1,0 +1,24 @@
+# Instaladores e arquivos locais
+installers/
+*.exe
+*.msi
+*.dmg
+*.zip
+*.log
+*.tmp
+*.bak
+
+# Dependências, credenciais e configuração do editor
+node_modules/
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store
+
+# Exportações pessoais do simulador
+farmgrid-progresso*.json

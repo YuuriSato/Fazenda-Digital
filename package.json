@@ -1,0 +1,13 @@
+{
+  "name": "farmgrid",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Dashboard local de CPU, RAM e processos de Tibia, Ragnarok e MU Online, com simulador de fazenda AFK.",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test engine.test.js monitor.test.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

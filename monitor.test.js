@@ -1,0 +1,6 @@
+const test=require('node:test'),assert=require('node:assert/strict'),{summarize}=require('./monitor');
+const farms=[{id:'tibia',processNames:['client.exe']}],proc={pid:2,name:'CLIENT.exe',startedAt:'2026-01-01',cpuSeconds:12,memoryBytes:200,responding:true};
+test('ausente é inoperante com consumo zero',()=>{const [f]=summarize(farms,[],new Map(),3,4);assert.equal(f.status,'inoperante');assert.equal(f.memoryBytes,0);assert.equal(f.cpuPercent,0);});
+test('soma memória e normaliza CPU pela capacidade total',()=>{const second={...proc,pid:3,cpuSeconds:22,memoryBytes:300},prev=new Map([[2,{...proc,cpuSeconds:10}],[3,{...second,cpuSeconds:20}]]);const [f]=summarize(farms,[proc,second],prev,2,4);assert.equal(f.cpuPercent,50);assert.equal(f.memoryBytes,500);assert.equal(f.status,'operando');});
+test('primeira leitura e PID reutilizado não inventam CPU',()=>{assert.equal(summarize(farms,[proc],new Map(),2,4)[0].cpuPercent,null);assert.equal(summarize(farms,[proc],new Map([[2,{...proc,startedAt:'outro'}]]),2,4)[0].cpuPercent,null);});
+test('sem resposta é inoperante; sem acesso é desconhecido',()=>{assert.equal(summarize(farms,[{...proc,responding:false}],new Map(),2,4)[0].status,'inoperante');const [f]=summarize(farms,[{...proc,responding:null,memoryBytes:null}],new Map(),2,4);assert.equal(f.status,'desconhecido');assert.equal(f.memoryBytes,null);});

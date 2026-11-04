@@ -1,0 +1,5 @@
+[
+ {"id":"tibia","name":"Tibia","subtitle":"CipSoft · MMORPG","processNames":["client.exe","tibia.exe"],"theme":"forest"},
+ {"id":"ragnarok","name":"Ragnarok","subtitle":"Gravity · Online LATAM","processNames":["ragexe.exe","ragexeRE.exe","ragnarok.exe"],"theme":"sunrise"},
+ {"id":"mu","name":"MU Online","subtitle":"Webzen · MMORPG","processNames":["main.exe","mu.exe","muonline.exe"],"theme":"night"}
+]
